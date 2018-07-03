@@ -2,9 +2,11 @@ package com.weather.android.util;
 
 import android.text.TextUtils;
 
+import com.google.gson.Gson;
 import com.weather.android.db.City;
 import com.weather.android.db.County;
 import com.weather.android.db.Province;
+import com.weather.android.gson.Weather;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -15,6 +17,24 @@ import org.json.JSONObject;
  */
 
 public class Utility {
+
+    /**
+     * 将返回的JSON数据解析成Weather实体类
+     * @param response
+     * @return
+     */
+    public static Weather handlerWeatherResponse(String response){
+        try {
+            JSONObject jsonObject = new JSONObject(response);
+            JSONArray jsonArray = jsonObject.getJSONArray("HeWeather");
+            String weatherContent = jsonArray.getJSONObject(0).toString();
+            return new Gson().fromJson(weatherContent,Weather.class);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 
     /**
      * 解析和处理从服务器上获取到的省份数据
