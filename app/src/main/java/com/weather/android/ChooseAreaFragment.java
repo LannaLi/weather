@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,6 +38,7 @@ import okhttp3.Response;
 
 public class ChooseAreaFragment extends Fragment{
 
+    private static final String TAG = "ChooseAreaFragment";
     public static final String URL = "http://guolin.tech/api/china";
 
     //省级别

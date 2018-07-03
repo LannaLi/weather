@@ -57,7 +57,7 @@ public class Utility {
                     City city = new City();
                     city.setCityName(cityObject.getString("name"));
                     city.setCityCode(cityObject.getInt("id"));
-                    city.setProviceId(proviceId);
+                    city.setProvinceId(proviceId);
                     city.save();
                 }
                 return true;
@@ -91,7 +91,6 @@ public class Utility {
             } catch (JSONException e){
                 e.printStackTrace();
             }
-
         }
         return false;
     }
