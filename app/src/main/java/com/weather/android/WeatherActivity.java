@@ -1,5 +1,6 @@
 package com.weather.android;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
@@ -22,6 +23,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.weather.android.gson.Forecast;
 import com.weather.android.gson.Weather;
+import com.weather.android.service.AutoUpdateService;
 import com.weather.android.util.HttpUtil;
 import com.weather.android.util.Utility;
 
@@ -33,9 +35,9 @@ import okhttp3.Response;
 
 public class WeatherActivity extends AppCompatActivity {
 
-    private static final String WEATHER_URL = "http://guolin.tech/api/weather?cityid=";
-    private static final String WEATHER_KEY = "&key=4a4450059aa748889f2a4f0d08777c2d";
-    private static final String REQUESTBINGPIC = "http://guolin.tech/api/bing_pic";
+    public static final String WEATHER_URL = "http://guolin.tech/api/weather?cityid=";
+    public static final String WEATHER_KEY = "&key=4a4450059aa748889f2a4f0d08777c2d";
+    public static final String REQUESTBINGPIC = "http://guolin.tech/api/bing_pic";
     private static final String TAG = "WeatherActivity";
 
     //可以滑动的布局
@@ -261,6 +263,9 @@ public class WeatherActivity extends AppCompatActivity {
         carWashText.setText(carWash);
         sportText.setText(sport);
         weatherLayout.setVisibility(View.VISIBLE);
+
+        Intent intent = new Intent(this, AutoUpdateService.class);
+        startActivity(intent);
     }
 }
 
